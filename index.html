@@ -374,14 +374,14 @@
                             </div>
                         </div>
                     </div>
-                    <form class="booking-form" id="bookingForm">
+                    <form class="booking-form" id="bookingForm" action="https://formspree.io/f/mykqjwaa" method="POST">
                         <div class="form-row">
-                            <input type="text" placeholder="您的姓名" required>
-                            <input type="tel" placeholder="手机号码" required>
+                            <input type="text" name="姓名" placeholder="您的姓名" required>
+                            <input type="tel" name="手机号码" placeholder="手机号码" required>
                         </div>
                         <div class="form-row">
-                            <input type="date" id="bookingDate" required>
-                            <select required>
+                            <input type="date" name="用餐日期" id="bookingDate" required>
+                            <select name="用餐时间" required>
                                 <option value="">用餐时间</option>
                                 <option>11:00</option><option>11:30</option>
                                 <option>12:00</option><option>12:30</option>
@@ -391,19 +391,19 @@
                             </select>
                         </div>
                         <div class="form-row">
-                            <select required>
+                            <select name="用餐人数" required>
                                 <option value="">用餐人数</option>
                                 <option>1-2人</option><option>3-4人</option>
                                 <option>5-6人</option><option>7-8人</option>
                                 <option>9人以上</option>
                             </select>
-                            <select>
+                            <select name="桌位偏好">
                                 <option value="">包间/大厅</option>
                                 <option>大厅</option><option>包间（4-6人）</option>
                                 <option>包间（8-12人）</option>
                             </select>
                         </div>
-                        <textarea rows="3" placeholder="如有忌口或特殊要求，请注明"></textarea>
+                        <textarea name="备注" rows="3" placeholder="如有忌口或特殊要求，请注明"></textarea>
                         <button type="submit" class="btn btn-primary btn-block">确认预约</button>
                     </form>
                 </div>

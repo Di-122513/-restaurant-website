@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
         dateInput.setAttribute('min', today);
     }
 
-    bookingForm.addEventListener('submit', e => {
+    bookingForm.addEventListener('submit', async e => {
         e.preventDefault();
         const name  = bookingForm.querySelector('input[type="text"]').value.trim();
         const phone = bookingForm.querySelector('input[type="tel"]').value.trim();
@@ -77,12 +77,23 @@ document.addEventListener('DOMContentLoaded', () => {
         const original = btn.textContent;
         btn.textContent = '提交中...';
         btn.disabled = true;
-        setTimeout(() => {
-            showToast('预约成功！我们会尽快电话确认。', 'success');
-            bookingForm.reset();
-            btn.textContent = original;
-            btn.disabled = false;
-        }, 1200);
+        try {
+            const response = await fetch(bookingForm.action, {
+                method: 'POST',
+                body: new FormData(bookingForm),
+                headers: { 'Accept': 'application/json' }
+            });
+            if (response.ok) {
+                showToast('预约成功！我们会尽快电话确认。', 'success');
+                bookingForm.reset();
+            } else {
+                showToast('提交失败，请稍后重试或直接拨打电话。', 'error');
+            }
+        } catch (err) {
+            showToast('网络异常，请稍后重试或直接拨打电话。', 'error');
+        }
+        btn.textContent = original;
+        btn.disabled = false;
     });
 
     // ========== Toast ==========
